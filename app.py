@@ -152,13 +152,13 @@ def detect_emotion():
 @app.route('/results')
 def results():
     detections = get_recent_detections()
-    return render_template('results.html', detections=detections)
+    return render_template('templateresult.html', detections=detections)
 
 @app.route('/statistics')
 def statistics():
     stats = get_statistics()
     total_detections = len(get_recent_detections(1000))
-    return render_template('statistics.html', stats=stats, total_detections=total_detections)
+    return render_template('templatestatistics.html', stats=stats, total_detections=total_detections)
 
 @app.route('/api/detections')
 def api_detections():
@@ -182,10 +182,11 @@ def health():
 if __name__ == '__main__':
     # Create necessary directories
     os.makedirs('static/uploads', exist_ok=True)
-    os.makedirs('static/css', exist_ok=True)
-    os.makedirs('static/js', exist_ok=True)
+   # os.makedirs('static/css', exist_ok=True)
+   # os.makedirs('static/js', exist_ok=True)
     
     # For production, use environment variable for port
     port = int(os.environ.get('PORT', 5000))
 
     app.run(host='0.0.0.0', port=port, debug=False)
+
