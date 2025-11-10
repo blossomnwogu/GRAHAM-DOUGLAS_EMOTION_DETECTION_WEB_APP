@@ -79,7 +79,7 @@ def get_statistics():
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('template.html')
 
 @app.route('/detect', methods=['POST'])
 def detect_emotion():
@@ -187,4 +187,5 @@ if __name__ == '__main__':
     
     # For production, use environment variable for port
     port = int(os.environ.get('PORT', 5000))
+
     app.run(host='0.0.0.0', port=port, debug=False)
