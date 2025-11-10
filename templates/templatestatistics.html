@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistics</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Emotion Detection Statistics</h1>
+            <a href="/" class="btn-link">← Back to Detection</a>
+        </header>
+
+        <div class="stats-container">
+            <div class="stats-overview">
+                <div class="stat-card">
+                    <h3>Total Detections</h3>
+                    <p class="stat-number">{{ total_detections }}</p>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                {% for stat in stats %}
+                <div class="stat-item">
+                    <h4 class="emotion {{ stat[0] }}">{{ stat[0] }}</h4>
+                    <p>Count: {{ stat[1] }}</p>
+                    <p>Avg Confidence: {{ "%.1f"|format(stat[2] * 100) if stat[2] else 0 }}%</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

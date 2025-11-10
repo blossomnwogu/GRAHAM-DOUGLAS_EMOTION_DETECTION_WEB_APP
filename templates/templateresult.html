@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detection Results</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Detection Results</h1>
+            <a href="/" class="btn-link">← Back to Detection</a>
+        </header>
+
+        <div class="results-container">
+            {% if detections %}
+            <div class="results-grid">
+                {% for detection in detections %}
+                <div class="result-card">
+                    <div class="result-header">
+                        <h3>{{ detection[2] or 'Anonymous' }}</h3>
+                        <span class="badge {{ 'online' if detection[9] else 'offline' }}">
+                            {{ 'Online' if detection[9] else 'Upload' }}
+                        </span>
+                    </div>
+                    <div class="result-info">
+                        <p><strong>Emotion:</strong> <span class="emotion {{ detection[6] }}">{{ detection[6] }}</span></p>
+                        <p><strong>Confidence:</strong> {{ "%.1f"|format(detection[7] * 100) }}%</p>
+                        <p><strong>Age:</strong> {{ detection[4] }}</p>
+                        <p><strong>Gender:</strong> {{ detection[5] }}</p>
+                        <p><strong>Time:</strong> {{ detection[10] }}</p>
+                    </div>
+                    {% if detection[8] %}
+                    <div class="result-image">
+                        <img src="{{ detection[8] }}" alt="Detection result">
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="no-results">
+                <p>No detections yet. <a href="/">Start detecting emotions!</a></p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
